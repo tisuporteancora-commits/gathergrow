@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CaixaPdvRouteImport } from './routes/caixa-pdv'
+import { Route as ContasAPagarReceberRouteImport } from './routes/contas-a-pagar-receber'
+import { Route as ControleDeEstoqueRouteImport } from './routes/controle-de-estoque'
+import { Route as FinanceiroRouteImport } from './routes/financeiro'
+import { Route as RelatoriosRouteImport } from './routes/relatorios'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CaixaPdvRoute = CaixaPdvRouteImport.update({
+  id: '/caixa-pdv',
+  path: '/caixa-pdv',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContasAPagarReceberRoute = ContasAPagarReceberRouteImport.update({
+  id: '/contas-a-pagar-receber',
+  path: '/contas-a-pagar-receber',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ControleDeEstoqueRoute = ControleDeEstoqueRouteImport.update({
+  id: '/controle-de-estoque',
+  path: '/controle-de-estoque',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceiroRoute = FinanceiroRouteImport.update({
+  id: '/financeiro',
+  path: '/financeiro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelatoriosRoute = RelatoriosRouteImport.update({
+  id: '/relatorios',
+  path: '/relatorios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/caixa-pdv': typeof CaixaPdvRoute
+  '/contas-a-pagar-receber': typeof ContasAPagarReceberRoute
+  '/controle-de-estoque': typeof ControleDeEstoqueRoute
+  '/financeiro': typeof FinanceiroRoute
+  '/relatorios': typeof RelatoriosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/caixa-pdv': typeof CaixaPdvRoute
+  '/contas-a-pagar-receber': typeof ContasAPagarReceberRoute
+  '/controle-de-estoque': typeof ControleDeEstoqueRoute
+  '/financeiro': typeof FinanceiroRoute
+  '/relatorios': typeof RelatoriosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/caixa-pdv': typeof CaixaPdvRoute
+  '/contas-a-pagar-receber': typeof ContasAPagarReceberRoute
+  '/controle-de-estoque': typeof ControleDeEstoqueRoute
+  '/financeiro': typeof FinanceiroRoute
+  '/relatorios': typeof RelatoriosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/caixa-pdv'
+    | '/contas-a-pagar-receber'
+    | '/controle-de-estoque'
+    | '/financeiro'
+    | '/relatorios'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/caixa-pdv'
+    | '/contas-a-pagar-receber'
+    | '/controle-de-estoque'
+    | '/financeiro'
+    | '/relatorios'
+  id:
+    | '__root__'
+    | '/'
+    | '/caixa-pdv'
+    | '/contas-a-pagar-receber'
+    | '/controle-de-estoque'
+    | '/financeiro'
+    | '/relatorios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CaixaPdvRoute: typeof CaixaPdvRoute
+  ContasAPagarReceberRoute: typeof ContasAPagarReceberRoute
+  ControleDeEstoqueRoute: typeof ControleDeEstoqueRoute
+  FinanceiroRoute: typeof FinanceiroRoute
+  RelatoriosRoute: typeof RelatoriosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/caixa-pdv': {
+      id: '/caixa-pdv'
+      path: '/caixa-pdv'
+      fullPath: '/caixa-pdv'
+      preLoaderRoute: typeof CaixaPdvRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contas-a-pagar-receber': {
+      id: '/contas-a-pagar-receber'
+      path: '/contas-a-pagar-receber'
+      fullPath: '/contas-a-pagar-receber'
+      preLoaderRoute: typeof ContasAPagarReceberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/controle-de-estoque': {
+      id: '/controle-de-estoque'
+      path: '/controle-de-estoque'
+      fullPath: '/controle-de-estoque'
+      preLoaderRoute: typeof ControleDeEstoqueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financeiro': {
+      id: '/financeiro'
+      path: '/financeiro'
+      fullPath: '/financeiro'
+      preLoaderRoute: typeof FinanceiroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relatorios': {
+      id: '/relatorios'
+      path: '/relatorios'
+      fullPath: '/relatorios'
+      preLoaderRoute: typeof RelatoriosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CaixaPdvRoute: CaixaPdvRoute,
+  ContasAPagarReceberRoute: ContasAPagarReceberRoute,
+  ControleDeEstoqueRoute: ControleDeEstoqueRoute,
+  FinanceiroRoute: FinanceiroRoute,
+  RelatoriosRoute: RelatoriosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
