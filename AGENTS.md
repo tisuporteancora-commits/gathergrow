@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Screens in src/screens/*.ts hold the Stitch design markup and scripts, rendered via Screen in src/components/AppShell.tsx; keeps fidelity to the exported designs.
