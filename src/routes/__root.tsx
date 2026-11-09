@@ -12,6 +12,12 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import type { SessionUser } from "@/fn/session";
+
+export type RouterAppContext = {
+  queryClient: QueryClient;
+  user?: SessionUser;
+};
 
 function NotFoundComponent() {
   return (
@@ -73,7 +79,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRouteWithContext<RouterAppContext>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },

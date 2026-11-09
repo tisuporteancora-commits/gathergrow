@@ -9,73 +9,111 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as CaixaPdvRouteImport } from './routes/caixa-pdv'
-import { Route as ContasAPagarReceberRouteImport } from './routes/contas-a-pagar-receber'
-import { Route as ControleDeEstoqueRouteImport } from './routes/controle-de-estoque'
-import { Route as FinanceiroRouteImport } from './routes/financeiro'
-import { Route as RelatoriosRouteImport } from './routes/relatorios'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as SetupRouteImport } from './routes/setup'
+import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedCadastrosRouteImport } from './routes/_authenticated/cadastros'
+import { Route as AuthenticatedCaixaPdvRouteImport } from './routes/_authenticated/caixa-pdv'
+import { Route as AuthenticatedContasAPagarReceberRouteImport } from './routes/_authenticated/contas-a-pagar-receber'
+import { Route as AuthenticatedControleDeEstoqueRouteImport } from './routes/_authenticated/controle-de-estoque'
+import { Route as AuthenticatedFinanceiroRouteImport } from './routes/_authenticated/financeiro'
+import { Route as AuthenticatedRelatoriosRouteImport } from './routes/_authenticated/relatorios'
 
-const IndexRoute = IndexRouteImport.update({
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetupRoute = SetupRouteImport.update({
+  id: '/setup',
+  path: '/setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
-const CaixaPdvRoute = CaixaPdvRouteImport.update({
+const AuthenticatedCadastrosRoute = AuthenticatedCadastrosRouteImport.update({
+  id: '/cadastros',
+  path: '/cadastros',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedCaixaPdvRoute = AuthenticatedCaixaPdvRouteImport.update({
   id: '/caixa-pdv',
   path: '/caixa-pdv',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
-const ContasAPagarReceberRoute = ContasAPagarReceberRouteImport.update({
-  id: '/contas-a-pagar-receber',
-  path: '/contas-a-pagar-receber',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ControleDeEstoqueRoute = ControleDeEstoqueRouteImport.update({
-  id: '/controle-de-estoque',
-  path: '/controle-de-estoque',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FinanceiroRoute = FinanceiroRouteImport.update({
+const AuthenticatedContasAPagarReceberRoute =
+  AuthenticatedContasAPagarReceberRouteImport.update({
+    id: '/contas-a-pagar-receber',
+    path: '/contas-a-pagar-receber',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedControleDeEstoqueRoute =
+  AuthenticatedControleDeEstoqueRouteImport.update({
+    id: '/controle-de-estoque',
+    path: '/controle-de-estoque',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedFinanceiroRoute = AuthenticatedFinanceiroRouteImport.update({
   id: '/financeiro',
   path: '/financeiro',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
-const RelatoriosRoute = RelatoriosRouteImport.update({
+const AuthenticatedRelatoriosRoute = AuthenticatedRelatoriosRouteImport.update({
   id: '/relatorios',
   path: '/relatorios',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/caixa-pdv': typeof CaixaPdvRoute
-  '/contas-a-pagar-receber': typeof ContasAPagarReceberRoute
-  '/controle-de-estoque': typeof ControleDeEstoqueRoute
-  '/financeiro': typeof FinanceiroRoute
-  '/relatorios': typeof RelatoriosRoute
+  '/': typeof AuthenticatedIndexRoute
+  '/login': typeof LoginRoute
+  '/setup': typeof SetupRoute
+  '/cadastros': typeof AuthenticatedCadastrosRoute
+  '/caixa-pdv': typeof AuthenticatedCaixaPdvRoute
+  '/contas-a-pagar-receber': typeof AuthenticatedContasAPagarReceberRoute
+  '/controle-de-estoque': typeof AuthenticatedControleDeEstoqueRoute
+  '/financeiro': typeof AuthenticatedFinanceiroRoute
+  '/relatorios': typeof AuthenticatedRelatoriosRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/caixa-pdv': typeof CaixaPdvRoute
-  '/contas-a-pagar-receber': typeof ContasAPagarReceberRoute
-  '/controle-de-estoque': typeof ControleDeEstoqueRoute
-  '/financeiro': typeof FinanceiroRoute
-  '/relatorios': typeof RelatoriosRoute
+  '/login': typeof LoginRoute
+  '/setup': typeof SetupRoute
+  '/cadastros': typeof AuthenticatedCadastrosRoute
+  '/caixa-pdv': typeof AuthenticatedCaixaPdvRoute
+  '/contas-a-pagar-receber': typeof AuthenticatedContasAPagarReceberRoute
+  '/controle-de-estoque': typeof AuthenticatedControleDeEstoqueRoute
+  '/financeiro': typeof AuthenticatedFinanceiroRoute
+  '/relatorios': typeof AuthenticatedRelatoriosRoute
+  '/': typeof AuthenticatedIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/caixa-pdv': typeof CaixaPdvRoute
-  '/contas-a-pagar-receber': typeof ContasAPagarReceberRoute
-  '/controle-de-estoque': typeof ControleDeEstoqueRoute
-  '/financeiro': typeof FinanceiroRoute
-  '/relatorios': typeof RelatoriosRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/login': typeof LoginRoute
+  '/setup': typeof SetupRoute
+  '/_authenticated/cadastros': typeof AuthenticatedCadastrosRoute
+  '/_authenticated/caixa-pdv': typeof AuthenticatedCaixaPdvRoute
+  '/_authenticated/contas-a-pagar-receber': typeof AuthenticatedContasAPagarReceberRoute
+  '/_authenticated/controle-de-estoque': typeof AuthenticatedControleDeEstoqueRoute
+  '/_authenticated/financeiro': typeof AuthenticatedFinanceiroRoute
+  '/_authenticated/relatorios': typeof AuthenticatedRelatoriosRoute
+  '/_authenticated/': typeof AuthenticatedIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/login'
+    | '/setup'
+    | '/cadastros'
     | '/caixa-pdv'
     | '/contas-a-pagar-receber'
     | '/controle-de-estoque'
@@ -83,85 +121,138 @@ export interface FileRouteTypes {
     | '/relatorios'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
+    | '/login'
+    | '/setup'
+    | '/cadastros'
     | '/caixa-pdv'
     | '/contas-a-pagar-receber'
     | '/controle-de-estoque'
     | '/financeiro'
     | '/relatorios'
+    | '/'
   id:
     | '__root__'
-    | '/'
-    | '/caixa-pdv'
-    | '/contas-a-pagar-receber'
-    | '/controle-de-estoque'
-    | '/financeiro'
-    | '/relatorios'
+    | '/_authenticated'
+    | '/login'
+    | '/setup'
+    | '/_authenticated/cadastros'
+    | '/_authenticated/caixa-pdv'
+    | '/_authenticated/contas-a-pagar-receber'
+    | '/_authenticated/controle-de-estoque'
+    | '/_authenticated/financeiro'
+    | '/_authenticated/relatorios'
+    | '/_authenticated/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  CaixaPdvRoute: typeof CaixaPdvRoute
-  ContasAPagarReceberRoute: typeof ContasAPagarReceberRoute
-  ControleDeEstoqueRoute: typeof ControleDeEstoqueRoute
-  FinanceiroRoute: typeof FinanceiroRoute
-  RelatoriosRoute: typeof RelatoriosRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  SetupRoute: typeof SetupRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setup': {
+      id: '/setup'
+      path: '/setup'
+      fullPath: '/setup'
+      preLoaderRoute: typeof SetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/': {
+      id: '/_authenticated/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
-    '/caixa-pdv': {
-      id: '/caixa-pdv'
+    '/_authenticated/cadastros': {
+      id: '/_authenticated/cadastros'
+      path: '/cadastros'
+      fullPath: '/cadastros'
+      preLoaderRoute: typeof AuthenticatedCadastrosRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/caixa-pdv': {
+      id: '/_authenticated/caixa-pdv'
       path: '/caixa-pdv'
       fullPath: '/caixa-pdv'
-      preLoaderRoute: typeof CaixaPdvRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedCaixaPdvRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
-    '/contas-a-pagar-receber': {
-      id: '/contas-a-pagar-receber'
+    '/_authenticated/contas-a-pagar-receber': {
+      id: '/_authenticated/contas-a-pagar-receber'
       path: '/contas-a-pagar-receber'
       fullPath: '/contas-a-pagar-receber'
-      preLoaderRoute: typeof ContasAPagarReceberRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedContasAPagarReceberRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
-    '/controle-de-estoque': {
-      id: '/controle-de-estoque'
+    '/_authenticated/controle-de-estoque': {
+      id: '/_authenticated/controle-de-estoque'
       path: '/controle-de-estoque'
       fullPath: '/controle-de-estoque'
-      preLoaderRoute: typeof ControleDeEstoqueRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedControleDeEstoqueRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
-    '/financeiro': {
-      id: '/financeiro'
+    '/_authenticated/financeiro': {
+      id: '/_authenticated/financeiro'
       path: '/financeiro'
       fullPath: '/financeiro'
-      preLoaderRoute: typeof FinanceiroRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedFinanceiroRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
-    '/relatorios': {
-      id: '/relatorios'
+    '/_authenticated/relatorios': {
+      id: '/_authenticated/relatorios'
       path: '/relatorios'
       fullPath: '/relatorios'
-      preLoaderRoute: typeof RelatoriosRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedRelatoriosRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
   }
 }
 
+interface AuthenticatedRouteChildren {
+  AuthenticatedCadastrosRoute: typeof AuthenticatedCadastrosRoute
+  AuthenticatedCaixaPdvRoute: typeof AuthenticatedCaixaPdvRoute
+  AuthenticatedContasAPagarReceberRoute: typeof AuthenticatedContasAPagarReceberRoute
+  AuthenticatedControleDeEstoqueRoute: typeof AuthenticatedControleDeEstoqueRoute
+  AuthenticatedFinanceiroRoute: typeof AuthenticatedFinanceiroRoute
+  AuthenticatedRelatoriosRoute: typeof AuthenticatedRelatoriosRoute
+  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedCadastrosRoute: AuthenticatedCadastrosRoute,
+  AuthenticatedCaixaPdvRoute: AuthenticatedCaixaPdvRoute,
+  AuthenticatedContasAPagarReceberRoute: AuthenticatedContasAPagarReceberRoute,
+  AuthenticatedControleDeEstoqueRoute: AuthenticatedControleDeEstoqueRoute,
+  AuthenticatedFinanceiroRoute: AuthenticatedFinanceiroRoute,
+  AuthenticatedRelatoriosRoute: AuthenticatedRelatoriosRoute,
+  AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  CaixaPdvRoute: CaixaPdvRoute,
-  ContasAPagarReceberRoute: ContasAPagarReceberRoute,
-  ControleDeEstoqueRoute: ControleDeEstoqueRoute,
-  FinanceiroRoute: FinanceiroRoute,
-  RelatoriosRoute: RelatoriosRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  LoginRoute: LoginRoute,
+  SetupRoute: SetupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
